@@ -1,0 +1,34 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- main
+
+pool: Default
+
+steps:
+- checkout: self
+  displayName: 'Checkout Repo'
+
+- task: Npm@1
+  inputs:
+    command: 'install'
+  displayName: 'NPM Install'
+
+- task: CmdLine@2
+  inputs:
+    script: 'npx playwright install && npx playwright test'
+  displayName: 'Install Playwright and Execute Playwright Test'
+
+- task: PublishHtmlReport@1
+  inputs:
+    reportDir: 'playwright-report/index.html'
+  displayName: 'Publich HRML Report'
+ 
+- task: CreateBug@2
+  inputs:
+     isyamlpipeline: true
+     custompaths: false
+     customrequestor: false
