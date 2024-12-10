@@ -1,5 +1,6 @@
 import {test as base} from "@playwright/test";
-import CommonAction from "../utils/commonactions";
+import CommonAction from "../utils/commonactions"
+import EmpCreate from "../pages/empCreatepage";
 import LoginPage from "../pages/loginpage";
 import { LocatorFile } from "../locators/locators";
 
@@ -13,6 +14,13 @@ export const test = base.extend({
         const commonActions = new CommonAction(page);
         await use(commonActions);
     },
+
+    empCreate: async({page},use) =>{
+        const empCreate = new EmpCreate(page);
+        await use(empCreate);
+    },
+
+
 
     locators: async({},use) =>{
         const locators = {
