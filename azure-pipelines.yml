@@ -27,8 +27,3 @@ steps:
     reportDir: 'playwright-report/index.html'
   displayName: 'Publich HRML Report'
  
-- task: CreateBug@2
-  inputs:
-     isyamlpipeline: true
-     custompaths: false
-     customrequestor: false
